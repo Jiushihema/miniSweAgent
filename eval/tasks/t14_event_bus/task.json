@@ -1,0 +1,5 @@
+{
+  "id": "t14_event_bus",
+  "title": "Fix wildcard matching, once-listeners, and safe unsubscribe in EventBus",
+  "prompt": "Fix the bugs in `event_bus/bus.py`:\n1. Topic wildcards: `*` matches exactly one dot-separated segment (`user.*` matches `user.login` but not `user.profile.edit`), while `#` matches zero or more segments (`user.#` matches `user`, `user.login`, `user.profile.edit`).\n2. `subscribe(pattern, fn, once=True)` must auto-unsubscribe `fn` *before* or *after* its first invocation without skipping subsequent listeners in the same `emit()` call.\n3. Unsubscribing during `emit()` must not raise `RuntimeError` or skip other active listeners.\nRun `pytest` to verify."
+}

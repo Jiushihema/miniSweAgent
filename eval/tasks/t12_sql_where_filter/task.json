@@ -1,0 +1,5 @@
+{
+  "id": "t12_sql_where_filter",
+  "title": "Fix AND/OR precedence and IS NULL / IN operators in WHERE filter",
+  "prompt": "Fix the bugs in `sql_filter/engine.py`:\n1. `AND` must bind tighter than `OR` (`A OR B AND C` means `A OR (B AND C)`), and parentheses `(...)` must be supported.\n2. Support `col IS NULL`, `col IS NOT NULL`, and `col IN ('a', 'b')` / `col IN (1, 2)`.\n3. Comparisons (`=`, `!=`, `<`, `>`) against a `None` field value must evaluate to `False` rather than raising `TypeError`.\nRun `pytest` to verify."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "t07_json_schema_validator",
+  "title": "Fix nested path reporting, bool-vs-int check, and additionalProperties in validator",
+  "prompt": "Fix the bugs in `mini_schema/` (`types.py`, `validator.py`):\n1. In Python `isinstance(True, int)` is `True`! Ensure schema type `'integer'` rejects booleans (`True`/`False`), and `'boolean'` only accepts `bool`.\n2. When `additionalProperties` is `False` on an `'object'` schema, any unexpected key must produce a validation error.\n3. Nested errors must report the full dotted/indexed path (e.g. `user.age` or `items[1].name`), not just the leaf key.\nRun `pytest` to verify."
+}

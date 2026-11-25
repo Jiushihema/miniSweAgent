@@ -33,7 +33,7 @@ def main() -> None:
         hit = (ct / pt * 100.0) if pt else 0.0
         obs_chars = (
             len(msgs[i + 1].get("content", ""))
-            if i + 1 < len(msgs) and msgs[i + 1].get("role") == "user"
+            if i + 1 < len(msgs) and msgs[i + 1].get("role") in ("user", "tool")
             else 0
         )
         acts = extra.get("actions") or []

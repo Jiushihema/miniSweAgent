@@ -1,0 +1,5 @@
+{
+  "id": "t08_expr_evaluator",
+  "title": "Fix power right-associativity and unary minus precedence in expr evaluator",
+  "prompt": "Fix the bugs in `expr_eval/` (`lexer.py`, `parser.py`):\n1. Support the `**` (exponentiation) operator, which must be **right-associative** (`2 ** 3 ** 2 == 512`).\n2. Unary minus has lower precedence than `**` (`-2 ** 2 == -4`, while `(-2) ** 2 == 4`), and higher precedence than `*` / `/` (`-3 * 2 == -6`).\n3. Support integer division `//` and modulo `%` at the same precedence as `*` and `/`.\nRun `pytest` to verify."
+}

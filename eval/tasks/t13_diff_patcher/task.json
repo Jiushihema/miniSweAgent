@@ -1,0 +1,5 @@
+{
+  "id": "t13_diff_patcher",
+  "title": "Fix multi-hunk offset drift and context mismatch check in diff applier",
+  "prompt": "Fix the bugs in `mini_patch/applier.py`:\n1. When applying multiple hunks to the same file, earlier insertions/deletions shift line numbers for subsequent hunks, or you must compute positions relative to the original line indices.\n2. Verify that every context (` `) and deletion (`-`) line in a hunk matches the target text; raise `ValueError` on mismatch.\n3. Preserve whether the original text ended with a trailing newline unless the hunk changes the last line.\nRun `pytest` to verify."
+}

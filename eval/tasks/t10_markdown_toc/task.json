@@ -1,0 +1,5 @@
+{
+  "id": "t10_markdown_toc",
+  "title": "Ignore headings inside fenced code blocks and deduplicate slugs",
+  "prompt": "Fix the bugs in `md_toc/toc.py`:\n1. Headings inside fenced code blocks (lines starting with ``` or ~~~, including language tags) must be ignored.\n2. Duplicate heading slugs must be deduplicated GitHub-style: first is `foo`, second is `foo-1`, third is `foo-2`, etc.\n3. Strip trailing `#` characters from ATX headings (e.g. `## Intro ##` -> `Intro`).\nRun `pytest` to verify."
+}

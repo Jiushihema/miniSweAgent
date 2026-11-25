@@ -74,7 +74,7 @@ def run_single_task(
             "output_path": str(traj_path),
         },
         "model": {},
-        "environment": {},
+        "environment": {"env": {"PATH": f"{Path(sys.executable).parent}:{os.environ.get('PATH', '')}"}},
     }
     if model_name:
         overrides["model"]["model_name"] = model_name

@@ -1,0 +1,5 @@
+{
+  "id": "t15_state_machine",
+  "title": "Fix guard evaluation, hook ordering, and exception rollback in StateMachine",
+  "prompt": "Fix the bugs in `fsm/machine.py`:\n1. Transition guards (`guard(ctx) -> bool`) must be checked before leaving the current state; if `False`, raise `PermissionError` without changing state or firing `on_exit`.\n2. Hook order on a valid transition `A -> B`: `guard` -> `on_exit(A)` -> update state to `B` -> `on_enter(B)`.\n3. If `on_enter(B)` raises an exception, roll `machine.state` back to `A` before re-raising.\nRun `pytest` to verify."
+}

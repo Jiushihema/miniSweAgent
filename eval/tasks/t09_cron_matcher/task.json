@@ -1,0 +1,5 @@
+{
+  "id": "t09_cron_matcher",
+  "title": "Fix step ranges and day-of-week/month OR semantics in cron matcher",
+  "prompt": "Fix the bugs in `cron_match/matcher.py`:\n1. Support range-with-step syntax like `1-10/2` (should yield `{1, 3, 5, 7, 9}`).\n2. Standard cron uses `0` OR `7` for Sunday in the day-of-week field (5th field, Python `weekday()` is Mon=0..Sun=6, so cron `0`/`7` -> Sun, `1` -> Mon, ..., `6` -> Sat).\n3. When BOTH day-of-month (3rd field) and day-of-week (5th field) are restricted (neither is `*`), standard cron matches if **EITHER** matches (OR semantics, not AND).\nRun `pytest` to verify."
+}

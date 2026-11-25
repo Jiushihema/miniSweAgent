@@ -1,0 +1,5 @@
+{
+  "id": "t11_http_router",
+  "title": "Fix static-vs-param priority and 405 Method Not Allowed in HTTP router",
+  "prompt": "Fix the bugs in `mini_router/router.py`:\n1. Static path segments must take priority over `:param` segments regardless of route registration order (e.g. registering `/users/:id` before `/users/me` must still match `/users/me` to the static handler).\n2. Normalize trailing slashes (`/users/` matches `/users`, except root `/` stays `/`).\n3. Return `(405, None, {})` when the path matches one or more routes for *other* HTTP methods, and `(404, None, {})` when no route matches the path.\nRun `pytest` to verify."
+}

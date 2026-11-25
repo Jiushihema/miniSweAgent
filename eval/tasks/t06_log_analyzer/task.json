@@ -1,0 +1,5 @@
+{
+  "id": "t06_log_analyzer",
+  "title": "Fix multiline traceback grouping and level filtering in log analyzer",
+  "prompt": "Fix the bugs in `log_analyzer/` (`parser.py` and `stats.py`):\n1. A log entry starts with `YYYY-MM-DD HH:MM:SS [LEVEL] message`. Indented lines or traceback lines following an entry belong to that entry's `message` (joined with `\\n`), not separate dropped lines.\n2. `filter_by_level(entries, min_level)` must include `min_level` and all higher severities (order: `DEBUG < INFO < WARNING < ERROR < CRITICAL`).\n3. `top_errors(entries, n)` must count `ERROR` and `CRITICAL` entries by their first line only, sorted by count descending then message ascending.\nNote: `data/sample.log` is a large fixture for manual inspection; run `pytest` to verify."
+}
