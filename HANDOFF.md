@@ -77,9 +77,9 @@
 ### M0：公共区与工程基线归一化（第 1–2 天，约 30 分钟）
 - **目标**：彻底解决两台电脑割裂，建立干净的 Git 版本基线。
 - **动作**：
-  - [ ] 自己电脑配好 SSH 免密登录 `aliyun-mini`（`dev@8.152.157.104`）。
-  - [ ] 在阿里云 `/home/dev/mini-swe-agent` 新建个人开发分支（如 `exp/cost-opt`），将本 `HANDOFF.md` 放入仓库根目录。
-  - [ ] 将现有 `notes/`、`scripts/traj_stats.py`、`default.py` 整理提交为第 1 个 commit，并推送到个人 GitHub 仓库。
+  - [x] 自己电脑配好 SSH 免密登录 `aliyun-mini`（`dev@8.152.157.104`）。
+  - [x] 在阿里云 `/home/dev/mini-swe-agent` 新建个人开发分支（如 `exp/cost-opt`），将本 `HANDOFF.md` 放入仓库根目录。
+  - [x] 将现有 `notes/`、`scripts/traj_stats.py`、`default.py` 整理提交为第 1 个 commit，并推送到个人 GitHub 仓库。
 - **验收标准**：`git status` 干净，GitHub 上能看到代码与 `HANDOFF.md`，自己电脑和公司电脑都能拉取/连接。
 
 ### M1：小评测集 + 批量评测脚手架 + Baseline 账单（第 1–2 周）
@@ -122,7 +122,7 @@
 
 > **给接手 Agent**：用户把本文档发给你后，直接带他执行下面这唯一一步，不要废话。
 
-- **当前阶段**：**M0（工程基线归一化）**
+- **当前阶段**：**M1（小评测集 + 批量评测脚手架 + Baseline 账单）**
 - **下一枪（预计 15–20 分钟）**：
   1. 帮用户在自己电脑上验证/配置 `ssh aliyun-mini`（连接到 `dev@8.152.157.104`）。
   2. 登录阿里云 `/home/dev/mini-swe-agent`，创建开发分支 `exp/cost-opt`，把本 `HANDOFF.md` 放到仓库根目录。
@@ -138,3 +138,4 @@
 | 2026-11-10 | 公司电脑 / Claude Code | 完成 D0–D3，产出 `D0.md`、`traj_stats.py`、`d3_sample.traj.json` | 阿里云工作区未提交 | — |
 | 2026-11-17 | 公司电脑 / Codex | `default.py` 加中文注释与 `ensure_ascii=False` | 阿里云工作区未提交 | — |
 | 2026-11-24 | 公司电脑 / Antigravity | 全量盘点跨 Agent 进度，锁定模式 A 与 6 周 M0–M4 计划，生成交接文档 | `HANDOFF.md` | **执行 M0：建 GitHub 公共区并提交第 1 个 commit** |
+| 2026-11-25 | 自己电脑 / Antigravity | 配通 `aliyun-mini` 免密登录，建 `exp/cost-opt` 分支并 push 至 `Jiushihema/miniSweAgent`，搭建 `scripts/run_eval.py` 与前 5 个可控任务 | `734fdf8` + M1 脚手架 | **跑通 5 题 Baseline 并扩充至 15–20 题** |

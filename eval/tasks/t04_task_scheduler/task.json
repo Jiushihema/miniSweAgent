@@ -1,0 +1,5 @@
+{
+  "id": "t04_task_scheduler",
+  "title": "Fix cycle detection and lexicographical tie-breaking in DAG scheduler",
+  "prompt": "Fix the bugs in `dag_sched/scheduler.py`:\n1. `schedule(deps)` takes a dict mapping `task -> list of prerequisite tasks`. It must return a deterministic topological order using lexicographical (alphabetical) tie-breaking among all currently ready tasks (use a min-heap).\n2. If a task depends on an unknown task (not a key in `deps`), raise `KeyError`.\n3. If the dependency graph contains a cycle (including self-dependency), raise `ValueError`.\nRun `pytest` and verify edge cases."
+}

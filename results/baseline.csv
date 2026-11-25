@@ -1,0 +1,6 @@
+task_id,policy,passed,exit_status,steps,first_chars,last_chars,last_first_ratio,total_chars,prompt_tokens,cached_tokens,cache_hit_rate,completion_tokens,cost,elapsed_sec
+t01_lru_cache,baseline,True,Submitted,13,3578,24315,6.8,166790,47187,43136,91.42,3270,0.005398,58.71
+t02_ini_parser,baseline,True,Submitted,13,3554,24402,6.87,174480,48837,43392,88.85,2323,0.004681,21.38
+t03_csv_aggregator,baseline,True,Submitted,15,3486,25601,7.34,193989,54832,50304,91.74,2889,0.005127,31.58
+t04_task_scheduler,baseline,True,Submitted,13,3566,22875,6.41,160382,42473,37760,88.9,2385,0.004502,25.18
+t05_rate_limiter,baseline,True,Submitted,10,3550,17327,4.88,99065,27752,23936,86.25,1877,0.003541,15.3

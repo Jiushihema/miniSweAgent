@@ -1,0 +1,5 @@
+{
+  "id": "t05_rate_limiter",
+  "title": "Fix sliding-window rate limiter boundary and per-key isolation",
+  "prompt": "Fix the bugs in `ratelimit/limiter.py`:\n1. `SlidingWindowLimiter(max_requests, window_seconds, clock=time.monotonic)` must track timestamps per `key` independently (currently a single global list is shared).\n2. Requests at `t - window_seconds` or earlier (`ts <= now - window_seconds`) are expired and must not count toward `max_requests`.\n3. Rejected requests (`allow(key) -> False`) must NOT record a timestamp in the window.\nRun `pytest` and verify edge cases."
+}

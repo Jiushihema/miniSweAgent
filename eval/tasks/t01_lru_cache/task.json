@@ -1,0 +1,5 @@
+{
+  "id": "t01_lru_cache",
+  "title": "Fix TTL expiration and LRU eviction order in cache.py",
+  "prompt": "Fix the bugs in `ttl_cache/cache.py`:\n1. When `capacity` is full and a new key is inserted, expired entries should be purged first before evicting the least-recently-used live entry.\n2. Updating an existing key with `set(key, value)` must refresh its recency AND its expiration timestamp (using the injected `clock` function).\n3. `get(key)` on an expired entry must delete it and return `None` without treating it as recently used.\nRun existing tests with `pytest` and add/verify edge cases."
+}

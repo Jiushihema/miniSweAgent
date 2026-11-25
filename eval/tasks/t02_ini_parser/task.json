@@ -1,0 +1,5 @@
+{
+  "id": "t02_ini_parser",
+  "title": "Fix inline comment stripping and quoted values in INI parser",
+  "prompt": "Fix the bugs in `ini_parser/parser.py`:\n1. Inline comments starting with `#` or `;` outside of quotes should be stripped, while `#` or `;` inside single or double quotes must be preserved.\n2. Surrounding matching quotes (`\"...\"` or `'...'`) on values should be unwrapped, and escaped quotes (`\\\"` or `\\'`) inside quoted strings unescaped.\n3. Keys appearing before any `[section]` header should go into the `'DEFAULT'` section.\nRun `pytest` and verify edge cases."
+}

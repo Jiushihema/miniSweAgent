@@ -1,0 +1,5 @@
+{
+  "id": "t03_csv_aggregator",
+  "title": "Fix numeric coercion and deterministic group aggregation",
+  "prompt": "Fix the bugs in `csv_agg/aggregator.py`:\n1. Empty strings, `'NA'`, `'N/A'`, or `'null'` (case-insensitive) in the value column must be skipped rather than crashing `float(...)`.\n2. `aggregate_sum` must return groups sorted by total descending, with ties broken alphabetically by group key ascending.\n3. Whitespace around group names and values should be stripped.\nRun `pytest` and verify edge cases."
+}
