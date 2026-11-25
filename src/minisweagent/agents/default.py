@@ -87,21 +87,23 @@ class DefaultAgent:
 
     def run(self, task: str = "", **kwargs) -> dict:
         """Run step() until agent is finished. Returns dictionary with exit_status, submission keys."""
-        self.extra_template_vars |= {"task": task, **kwargs}
-        self.messages = []
+        self.extra_template_vars |= {"task": task, **kwargs} # 添加临时变量
+        self.messages = [] # 消息初始化
         self.add_messages(
             self.model.format_message(role="system", content=self._render_template(self.config.system_template)),
             self.model.format_message(role="user", content=self._render_template(self.config.instance_template)),
         )
+        # 持续执行步骤，直到 Agent 生成退出消息。
         while True:
             try:
                 self.step()
-                self.n_consecutive_format_errors = 0  # reset on any clean step
+                self.n_consecutive_format_errors = 0  # 成功执行一步后，重置连续格式错误次数。
             except FormatError as e:
-                # The call was billed before parsing failed, so query() never got to charge it.
+                # 模型调用已经计费，但消息解析失败，因此在这里补记费用。
                 self.cost += e.messages[0].get("extra", {}).get("cost", 0.0)
                 self.n_consecutive_format_errors += 1
                 if 0 < self.config.max_consecutive_format_errors <= self.n_consecutive_format_errors:
+                    # 连续格式错误达到上限后，结束 Agent 运行。
                     self.add_messages(
                         *e.messages,
                         {
@@ -111,15 +113,20 @@ class DefaultAgent:
                         },
                     )
                 else:
+                    # 未达到上限时，保留错误消息并继续尝试。
                     self.add_messages(*e.messages)
             except InterruptAgentFlow as e:
+                # 记录可控中断，并由退出消息结束运行。
                 self.add_messages(*e.messages)
             except Exception as e:
+                # 未预期异常需要记录轨迹，然后继续抛出给上层处理。
                 self.handle_uncaught_exception(e)
                 raise
             finally:
+                # 每一步结束后都保存当前轨迹，避免进度丢失。
                 self.save(self.config.output_path)
             if self.messages[-1].get("role") == "exit":
+                # 最后一条消息是退出消息时，结束循环。
                 break
         return self.messages[-1].get("extra", {})
 
@@ -186,5 +193,5 @@ class DefaultAgent:
         data = self.serialize(*extra_dicts)
         if path:
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(json.dumps(data, indent=2))
+            path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
         return data
