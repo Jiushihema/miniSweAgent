@@ -93,7 +93,12 @@ def run_single_task(
         model = get_model(cfg["model"].get("model_name"), cfg["model"])
         env = LocalEnvironment(**cfg["environment"])
         agent = DefaultAgent(model, env, **cfg["agent"])
-        res = agent.run(task=task_meta["prompt"])
+        pinned_prompt = (
+            f"Working directory: {workdir}\n"
+            f"IMPORTANT: Only inspect and edit files inside `{workdir}`. Do not search outside it.\n\n"
+            + task_meta["prompt"]
+        )
+        res = agent.run(task=pinned_prompt)
         exit_status = res.get("exit_status", "Unknown")
 
         oracle_dest = workdir / "oracle_tests"
